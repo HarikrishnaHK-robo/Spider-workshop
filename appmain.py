@@ -1,11 +1,15 @@
 import streamlit as st
 import base64
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+
 
 st.set_page_config(layout="wide")
 col1, col2, col3 = st.columns([8,1,1])
 
 with col2:
-    st.button("ABOUT US")
+    if st.button("ABOUT US"):
+        st.session_state.page = "about"
 
 with col3:
     st.button("CONTACT US")
@@ -16,8 +20,47 @@ def get_base64(img):
     
 logo= get_base64("Spider_logo.png")
 
+if st.session_state.page == "home": 
+ st.markdown("""<style id = "newstyle">
+             
+if st.session_state.page == "about":
+    st.markdown("""
+<style>
+.about-box {
+    margin: 12vh auto;
+    width: 70%;
+    color: #EAF2FF;
+    font-family: "Segoe UI", Consolas, monospace;
+    line-height: 1.9;
+    font-size: 24px;
+    text-align: center;
+}
+.about-title {
+    font-size: 64px;
+    letter-spacing: 8px;
+    margin-bottom: 40px;
+}
+</style>
+""", unsafe_allow_html=True)
 
 st.markdown("""
+<div class="about-box">
+    <div class="about-title">🕷️ ABOUT SPIDER</div>
+
+    Spider, the official Research and Development Club of the National Institute of Technology, Trichy, is a student-run
+    technical organization dedicated to innovation in AI/ML, electronics, IoT, robotics, and web/app development.
+
+    Founded in 2004, the club focuses on industry-relevant, practical projects through its core domains:
+
+    <br><br>
+    <b>Algorithms • Tronix • App Development • Web Development</b>
+</div>
+""", unsafe_allow_html=True)
+
+if st.button("⬅ BACK"):
+    st.session_state.page = "home"
+
+
 <style id = "newstyle">
 
 
